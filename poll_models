@@ -2,7 +2,7 @@
 
 #########################################################
 #  Messy data and machine learning Homework 3           #
-#  Group member: Jiaqian Xing, Yanjun Cheng, Zhen Zhang #
+#  Group members: Jiaqian Xing, Yanjun Cheng, Zhen Zhang#
 #########################################################
 source("library.r")
 
