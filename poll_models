@@ -34,4 +34,4 @@ number_of_fitted_coefficients <- number_of_levels - 1
 number_of_fitted_coefficients[8] = 0
 
 l_vs_co <- data.frame(variable, number_of_levels, number_of_fitted_coefficients)
-write_csv(coeff, path='data/question_a2_levels_vs_coefficients.csv')
+write_csv(l_vs_co, path='data/question_a2_levels_vs_coefficients.csv')
