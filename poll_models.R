@@ -1,0 +1,35 @@
+#########################################################
+#  Messy data and machine learning Homework 3           #
+#  Group members: Jiaqian Xing, Yanjun Cheng, Zhen Zhang#
+#########################################################
+source("library.r")
+
+## A1: Setup  -----------------------------------------------------------------------------------------
+poll_data <- read_tsv("data_hw3/poll_data.tsv", quote= " ") %>% 
+  as.tibble() 
+poll_data <- within(poll_data, vote_2008 <- relevel(as.factor(vote_2008), ref = "john mcCain"))
+
+## A2: Fitting a model  --------------------------------------------------------------------------------
+model <- glm(vote_2008 ~  state + sex + race + age + education + party + ideology + state_contestedness, 
+             data = poll_data,
+             family = 'binomial')
+require(broom)    
+timodel <- tidy(model)
+coeff <- data.frame(timodel[1], timodel[2])
+names(coeff) <- c("coefficient_name", "coefficient_estimate")
+write_csv(coeff, path='data/question_a2_coefficients.csv')
+
+variable <- colnames(poll_data[-8])
+number_of_levels <- c(length(unique(poll_data$state)),
+                      length(unique(poll_data$sex)),
+                      length(unique(poll_data$race)),
+                      length(unique(poll_data$age)),
+                      length(unique(poll_data$education)),
+                      length(unique(poll_data$party)),
+                      length(unique(poll_data$ideology)),
+                      length(unique(poll_data$state_contestedness)))
+number_of_fitted_coefficients <- number_of_levels - 1
+number_of_fitted_coefficients[8] = 0
+
+l_vs_co <- data.frame(variable, number_of_levels, number_of_fitted_coefficients)
+write_csv(l_vs_co, path='data/question_a2_levels_vs_coefficients.csv')
