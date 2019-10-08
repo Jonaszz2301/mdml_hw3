@@ -128,7 +128,8 @@ qa4$predictions[qa4$pr_other > qa4$pr_obama & qa4$pr_other > qa4$pr_mccain] <- "
 write_csv(qa4, path='data/question_a4.csv')
 
 # Create one figure with two subplots
+png(file="figures/question_a4.png", width=600, height=350)
 par(mfrow=c(1,2))
 hist(pr_major)
 hist(pr_obama_given_major)
-
+dev.off()
