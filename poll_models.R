@@ -29,7 +29,7 @@ names(coeff) <- c("coefficient_name", "coefficient_estimate")
 coeff <- arrange(coeff, coefficient_name)
 
 # Save data "question_a2_coefficients.csv"
-write_csv(coeff, path='data/question_a2_coefficients.csv')
+write_csv(coeff, path='hw3_zhang_cheng_xing/data/question_a2_coefficients.csv')
 
 # Create three counting variables as required
 variable <- colnames(poll_data[-8])
@@ -46,7 +46,7 @@ number_of_fitted_coefficients[8] = 0
 
 # Save data "question_a2_coefficients.csv"
 l_vs_co <- data.frame(variable, number_of_levels, number_of_fitted_coefficients)
-write_csv(l_vs_co, path='data/question_a2_levels_vs_coefficients.csv')
+write_csv(l_vs_co, path='hw3_zhang_cheng_xing/data/question_a2_levels_vs_coefficients.csv')
 
 ## A3: Evaluating the model  ---------------------------------------------------------------------------
 # Use the binary logistic regression model above to predict probabilities
@@ -63,7 +63,7 @@ tiprob$predictions_point_5[tiprob$predicted_probability < 0.7] <- "john mcCain"
 
 # Save data "question_a3.csv"
 pr_prob <- data.frame(tiprob[2], tiprob[1], tiprob[3])
-write_csv(pr_prob, path='data/question_a3.csv')
+write_csv(pr_prob, path='hw3_zhang_cheng_xing/data/question_a3.csv')
 
 # Compute the accuracy, precision, and recall metrics for predictions produced in step 2
 TP_2 <- sum(poll_data$vote_2008 == "barack obama" & tiprob$predictions_point_5 == "barack obama")
@@ -125,10 +125,10 @@ qa4$predictions[qa4$pr_mccain > qa4$pr_obama & qa4$pr_mccain > qa4$pr_other] <- 
 qa4$predictions[qa4$pr_other > qa4$pr_obama & qa4$pr_other > qa4$pr_mccain] <- "other"
 
 # Save data "question_a4.csv"
-write_csv(qa4, path='data/question_a4.csv')
+write_csv(qa4, path='hw3_zhang_cheng_xing/data/question_a4.csv')
 
 # Create one figure with two subplots
-png(file="figures/question_a4.png", width=600, height=350)
+png(file="hw3_zhang_cheng_xing/figures/question_a4.png", width=600, height=350)
 par(mfrow=c(1,2))
 hist(pr_major)
 hist(pr_obama_given_major)
